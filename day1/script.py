@@ -19,5 +19,5 @@ for x in nums:
             num1 = x
             num2 = y
 
-#multipy the 2 nums and get answer
-print(num1 * num2)
+#multipy the 2 nums and get answer for part 1
+print('Part 1 Solution: ' + str(num1 * num2))

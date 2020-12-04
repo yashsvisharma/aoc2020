@@ -16,35 +16,32 @@ for entry in text:
 
 def validate():
 
-    valid = 0
+    numValid = 0
 
-    # get min number
-    min = textParsed[1][0].split('-')[0]
-    print(min)
+    # test every item in list
+    for target in (textParsed):
+        # get min number
+        min = target[0].split('-')[0]
 
-    # get max number
-    max = textParsed[1][0].split('-')[1]
-    print(max)
+        # get max number
+        max = target[0].split('-')[1]
 
-    # get validation char
-    char = textParsed[1][1][0]
-    print(char)
+        # get validation char
+        char = target[1][0]
 
-    # get string to validate
-    testString = textParsed[1][2]
-    print(testString)
+        # get string to validate
+        testString = target[2]
 
-    # test for char reps
-    count = 0
-    for i in testString:
-        if i == char:
-            count = count + 1
+        # do actual validation
+        count = 0
+        for i in testString:
+            if i == char:
+                count += 1
+        
+        if (count >= int(min)) and (count <=int(max)):
+            numValid += 1
     
-    # is it valid?
-    if (count >= min) and (count <=max):
-        valid += 1
-
-    print(valid)
+    print(numValid)
 
 
 validate()

@@ -8,21 +8,12 @@ with open("input.txt", "r") as file:
 textBlocks = text.split("\n\n")
 
 ppList = []
-ppDict = {}
 
 # place all items in list
 for passport in textBlocks:
     ppList.append(passport.split())
 
 # ppList has all passports now
-print(len(ppList))
-
-
-for ppAtribute in ppList[0]:
-    (key, val) = ppAtribute.split(':')
-    ppDict[key] = val
-
-print(ppDict)
 
 def processPP(passport):
     validPP = False
@@ -37,3 +28,16 @@ def processPP(passport):
     if all(elem in passport.keys() for elem in matches):
         validPP = not validPP
         return validPP
+    
+    return validPP
+
+print(ppList[0])
+
+for entry in ppList:
+    print(entry)
+
+# place passports into dicts
+passportDict = {}
+for attribute in entry:
+    (key, value) = attribute.split(':')
+    passportDict[key] = value

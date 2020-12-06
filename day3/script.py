@@ -6,10 +6,15 @@
 
 # read file into list line by line
 with open("input.txt", "r") as file:
-    text = [str(line) for line in file.readlines()]
+    text = file.readlines()
 
-textParsed = []
-for entry in text:
-    textParsed.append(entry.split())
+lineCounter = 0
+treeCounter = 0
+cursor = 0
 
-print(textParsed)
+for line in text:
+    if (line[(cursor % 31)] == '#'):
+        treeCounter += 1
+    cursor += 3
+
+print(treeCounter)

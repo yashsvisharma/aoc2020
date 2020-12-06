@@ -5,39 +5,37 @@
 # read input into program
 with open("input.txt", "r") as file:
     text = file.read()
-textBlocks = text.split("\n\n")
+tokens = text.split("\n\n")
 
-ppList = []
+# generate passports from token
+passports = []
+for t in tokens:
+    passports.append(t.split())
 
-# place all items in list
-for passport in textBlocks:
-    ppList.append(passport.split())
 
-# ppList has all passports now
+def processRawPassport(rawPassport): 
+    dict = {}
+    for info in rawPassport:
+        (key, value) = info.split(':')
+        dict[key] = value
+    return dict    
 
-def processPP(passport):
-    validPP = False
+print(processRawPassport(passports[16]))
 
-    # checks if 8 items exist
-    if (len(passport) == 8):
-        validPP = not validPP
-        return validPP
-    
-    # check if all exist ecept cid
+def validatePassport(dictInput):
+    status = False
     matches = ('byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid')
-    if all(elem in passport.keys() for elem in matches):
-        validPP = not validPP
-        return validPP
-    
-    return validPP
+    if all(elem in dictInput.keys() for elem in matches):
+        status = True
+    return status
 
-print(ppList[0])
+print(validatePassport(processRawPassport(passports[16])))
 
-for entry in ppList:
-    print(entry)
+# validate each passport
+numValid = 0
 
-# place passports into dicts
-passportDict = {}
-for attribute in entry:
-    (key, value) = attribute.split(':')
-    passportDict[key] = value
+for passport in passports:
+    if (validatePassport(processRawPassport(passport))):
+        numValid += 1
+
+print(numValid)

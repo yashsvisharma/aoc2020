@@ -34,3 +34,4 @@ print(
     detectTrees(7, 1) *
     detectTrees(1, 2)
 )
+
